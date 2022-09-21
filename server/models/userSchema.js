@@ -1,14 +1,12 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const userSchema = new Schema({
-  email: String,
-  password: String,
-  name: String
-})
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    //autogen a sequential id?
+    email: DataTypes.TEXT,
+    username: DataTypes.TEXT,
+    passHash: DataTypes.TEXT
+  });
+  //association needed with UserVoyage?
+  return User;
+}

@@ -4,8 +4,8 @@ const Koa = require('Koa');
 const app = new Koa();
 
 const bodyParser = require('koa-bodyparser');
-const xmlParser = require('koa-xml-parser');
-const parseXML = xmlParser();
+// const xmlParser = require('koa-xml-parser');
+// const parseXML = xmlParser();
 
 const cors = require('@koa/cors');
 let corsOptions = {
@@ -20,7 +20,7 @@ const router = require('./routers/index.js');
 
 app.use(cors(corsOptions));
 app.use(bodyParser());
-app.use(parseXML());
+// app.use(parseXML());
 app.use(router.routes());
 
 app.listen(PORT, () => {

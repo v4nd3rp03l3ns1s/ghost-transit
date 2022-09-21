@@ -1,11 +1,22 @@
 'use strict';
 
-const mongoose = require('mongoose');
-//task: hide this url in an env
-const url = 'mongodb://localhost:27017/ghost-transit';
+const fs = require('fs');
+const user = require('./userSchema.js');
+const Sequelize = require('sequelize');
 
-mongoose.connect(url);
-const db = mongoose.connection;
-console.log(mongoose.connection.readystate, 'Mongoose is a go!');
+const sequelizeConfig = {
+  host: 'localhost',
+  dialect: 'postgres',
+  logging: false
+};
+
+const sequelize = new Sequelize('station-to-station', 'postgres', 'postgres', sequelizeConfig);
+const db = {};
+
+const model = user(sequelize, Sequelize.DataTypes);
+db[model.name] = model;
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 module.exports = db;
