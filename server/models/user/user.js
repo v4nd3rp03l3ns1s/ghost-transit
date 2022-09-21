@@ -7,6 +7,13 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.TEXT,
     passHash: DataTypes.TEXT
   });
-  //association needed with UserVoyage?
+
+  User.associate = db => {
+    db.User.hasMany(db.UserVoyage, {
+      onDelete: "CASCADE",
+      foreignKey: { allowNull: false }
+    });
+  };
+
   return User;
-}
+};

@@ -3,9 +3,23 @@
 module.exports = (sequelize, DataTypes) => {
   const UserVoyage = sequelize.define('UserVoyage', {
     //autogen a sequential id?
-    voyageName: DataTypes.TEXT,
-    //foreign id for user id?
+    voyageName: string,
   });
-  //association needed with UserVoyage?
+
+  UserVoyage.associate = db => {
+    db.UserVoyage.belongsTo(db.User, {
+      onDelete: "CASCADE",
+      foreignKey: { allowNull: false }
+    });
+    db.UserVoyage.hasMany(db.UserBus, {
+      onDelete: "CASCADE",
+      foreignKey: { allowNull: false }
+    });
+    db.UserVoyage.hasMany(db.UserTrain, {
+      onDelete: "CASCADE",
+      foreignKey: { allowNull: false }
+    });
+  };
+
   return UserVoyage;
-}
+};

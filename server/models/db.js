@@ -1,8 +1,9 @@
 'use strict';
 
 const fs = require('fs');
-const user = require('./user.js');
+const user = require('./user/user.js');
 const Sequelize = require('sequelize');
+const Associations = require('./associations')
 
 const sequelizeConfig = {
   host: 'localhost',
