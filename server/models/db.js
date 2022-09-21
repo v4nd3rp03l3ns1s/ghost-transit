@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const user = require('./userSchema.js');
+const user = require('./user.js');
 const Sequelize = require('sequelize');
 
 const sequelizeConfig = {
