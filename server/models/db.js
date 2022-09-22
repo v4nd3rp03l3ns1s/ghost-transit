@@ -4,14 +4,15 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const Associations = require('./associations')
+const config = require('../config');
 
 const sequelizeConfig = {
-  host: 'localhost',
+  host: config.dbHost,
   dialect: 'postgres',
   logging: false
 };
 
-const sequelize = new Sequelize('StationToStation', 'postgres', 'postgres', sequelizeConfig);
+const sequelize = new Sequelize('StationToStation', config.dbUser, config.dbPassword, sequelizeConfig);
 const db = {};
 
 const files = fs.readdirSync(__dirname);
