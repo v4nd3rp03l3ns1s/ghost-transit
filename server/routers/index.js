@@ -1,10 +1,10 @@
 'use strict';
 
-const { Router } = require('express');
+const Router = require('koa-router');
 // import sub routers
 
-const rootRouter = Router();
+const rootRouter = new Router();
 
 //rootRouter directs to subRouters
 
-export { rootRouter as router };
+module.exports = rootRouter;

@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@koa/cors": "^3.4.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^12.0.0",
+    "pg": "^8.8.0",
+    "postgres": "^3.2.4",
+    "sequelize": "^6.23.0"
+  }
+}
