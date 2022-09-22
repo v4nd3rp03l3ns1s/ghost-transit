@@ -22,16 +22,24 @@ const devController = {
     } catch (err) {
       ctx.body = err;
       ctx.status = 500;
-  }
+    }
   },
   populateTrainStops: async function (ctx) {
     try {
       const response = await fetch(config.ctaDataURL);
       const data = await response.json();
       const filteredData = manageStops(data);
-      const newStop = db.TrainStop;
+      // const newStop = db.TrainStop;
+      // filteredData.forEach(async (stop) => (
+      //   await newStop.create({stop})
+      // ));
       filteredData.forEach(async (stop) => (
-        await newStop.create({stop})
+        addStop(stop.stationID, {
+          stopID: stop.stopID,
+          stopName: stop.stopName,
+          direction: stop.direction,
+          stationID: stop.stationID
+        })
       ));
       ctx.body = filteredData;
       ctx.status = 200;
@@ -66,6 +74,13 @@ function manageStops (ctaData) {
    stationID: map_id
   }));
   return filteredData;
+}
+
+async function addStop(stationID, modelObject) {
+  const parentStation = await db.TrainStation.findOne({where: {stationID: stationID}});
+  const newStop = db.TrainStop;
+  const addedStop = await newStop.create(modelObject);
+  addedStop.setUser(parentStation);
 }
 
 

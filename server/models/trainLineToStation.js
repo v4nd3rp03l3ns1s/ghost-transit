@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
   TrainLineToStation.associate = db => {
     db.TrainLineToStation.belongsTo(db.TrainLine, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: { allowNull: true }
     });
     db.TrainLineToStation.belongsTo(db.TrainStation, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: { allowNull: true }
     });
   };
 

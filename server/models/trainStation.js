@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   TrainStation.associate = db => {
     db.TrainStation.hasMany(db.TrainLineToStation, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: { allowNull: true }
     });
     db.TrainStation.hasMany(db.TrainStop, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: { allowNull: true }
     });
   };
 
