@@ -1,1 +1,7 @@
+#Sensitive Data
 config.js
+./controllers/config.js
+
+#Dev Utility
+./devUtility/devController.js
+./routers/devRouter.js
