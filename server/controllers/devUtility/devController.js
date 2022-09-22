@@ -1,7 +1,5 @@
 'use strict';
 
-const { response } = require('express');
-const { CITEXT } = require('sequelize');
 const config = require('../config');
 
 const devController = {
@@ -10,6 +8,7 @@ const devController = {
     try {
       const response = await fetch(config.populateTrains);
       const data = await response.json();
+      console.log(data, 'api data');
 
       ctx.body = '';
       ctx.status = 200;

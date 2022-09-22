@@ -1,12 +1,15 @@
 'use strict';
 
 const Router = require('koa-router');
-// import sub routers
-const devRouter = require('./devRouter');
 
+//initialize all routers
 const rootRouter = new Router();
+const devRouter = new Router();
 
-//rootRouter directs to subRouters
-rootRouter.use('/dev', devRouter);
+rootRouter.use(
+  '/dev',
+  devRouter.routes(),
+  devRouter.allowedMethods()
+);
 
-module.exports = rootRouter;
+module.exports = { rootRouter, devRouter };
