@@ -20,9 +20,11 @@ const router = require('./routers/index.js');
 
 app.use(cors(corsOptions));
 app.use(bodyParser());
-// app.use(parseXML());
 app.use(router.routes());
 
-app.listen(PORT, () => {
-  console.log(`Ghost train running at http://localhost:${PORT}`)
-});
+(async function bootstrap () {
+  await db.sequelize.sync();
+  app.listen(PORT, () => {
+    console.log(`Ghost train running at http://localhost:${PORT}`)
+  });
+})();

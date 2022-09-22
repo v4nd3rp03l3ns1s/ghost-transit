@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const user = require('./user/user.js');
+const path = require('path');
 const Sequelize = require('sequelize');
 const Associations = require('./associations')
 
@@ -11,11 +11,21 @@ const sequelizeConfig = {
   logging: false
 };
 
-const sequelize = new Sequelize('station-to-station', 'postgres', 'postgres', sequelizeConfig);
+const sequelize = new Sequelize('StationToStation', 'postgres', 'postgres', sequelizeConfig);
 const db = {};
 
-const model = user(sequelize, Sequelize.DataTypes);
-db[model.name] = model;
+const files = fs.readdirSync(__dirname);
+
+for (const file of files) {
+  if (file !== 'index.js') {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  }
+}
+
+for (const model in db) {
+  if (db[model].associate) db[model].associate(db);
+}
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
