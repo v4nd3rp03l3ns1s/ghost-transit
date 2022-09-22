@@ -2,7 +2,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const BusDirection = sequelize.define('BusDirection', {
-    //autogen a sequential id?
+    _id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     direction: DataTypes.TEXT,
   });
 

@@ -2,7 +2,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const TrainStop = sequelize.define('TrainStop', {
-    //autogen a sequential id?
+    _id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     stopID: DataTypes.TEXT,
     stopName: DataTypes.TEXT,
     direction: DataTypes.TEXT,

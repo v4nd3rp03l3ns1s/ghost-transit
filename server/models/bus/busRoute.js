@@ -2,7 +2,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const BusRoute = sequelize.define('BusRoute', {
-    //autogen a sequential id?
+    _id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     routeID: DataTypes.TEXT,
     routeName: DataTypes.TEXT,
     routeColor: DataTypes.TEXT

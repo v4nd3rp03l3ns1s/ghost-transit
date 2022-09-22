@@ -2,7 +2,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const UserVoyage = sequelize.define('UserVoyage', {
-    //autogen a sequential id?
+    _id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     voyageName: string,
   });
 

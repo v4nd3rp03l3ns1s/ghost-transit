@@ -2,7 +2,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const TrainLine = sequelize.define('TrainLine', {
-    //autogen a sequential id?
+    _id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     lineName: DataTypes.TEXT,
     trainColor: DataTypes.TEXT
   });
