@@ -10,24 +10,20 @@ const config = require('./config');
 const cors = require('@koa/cors');
 let corsOptions = {
   credentials: true,
-  origin: config.corsOrigin,
-  methods: ['GET', 'POST', 'DELETE']
+  origin: config.corsOrigin
 };
 
 const db = require('./models/db.js');
-const {rootRouter} = require('./routers/index.js');
+const { rootRouter } = require('./routers/index.js');
 const PORT = config.serverPort;
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser());
-app.use(
-  rootRouter.routes(),
-  rootRouter.allowedMethods()
-);
+app.use(rootRouter.routes(),);
 
 (async function bootstrap () {
   await db.sequelize.sync();
   app.listen(PORT, () => {
-    console.log(`Ghost train running at http://localhost:${PORT}`)
+    console.log(`Station to Station: http://127.0.0.1:${PORT}`)
   });
 })();

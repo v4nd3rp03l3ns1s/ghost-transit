@@ -2,14 +2,16 @@
 
 const Router = require('koa-router');
 
+//import controllers
+const devController = require('../controllers/devUtility/devController');
+
 //initialize all routers
 const rootRouter = new Router();
-const devRouter = new Router();
 
-rootRouter.use(
-  '/dev',
-  devRouter.routes(),
-  devRouter.allowedMethods()
-);
+//dev routes
+rootRouter.get('/dev/populateTrainStations', devController.populateTrainStations);
+rootRouter.get('/dev/populateTrainStops', devController.populateTrainStops);
 
-module.exports = { rootRouter, devRouter };
+// rootRouter.use('/', devRouter.routes());
+
+module.exports = { rootRouter };
