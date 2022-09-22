@@ -2,21 +2,21 @@
 
 const Koa = require('Koa');
 const app = new Koa();
-
 const bodyParser = require('koa-bodyparser');
-// const xmlParser = require('koa-xml-parser');
-// const parseXML = xmlParser();
+
+//config import
+const config = require('./config');
 
 const cors = require('@koa/cors');
 let corsOptions = {
   credentials: true,
-  origin: 'http://localhost:4200',
+  origin: config.corsOrigin,
   methods: ['GET', 'POST', 'DELETE']
 };
 
 const db = require('./models/db.js');
 const router = require('./routers/index.js');
-// const PORT = env?
+const PORT = config.serverPort;
 
 app.use(cors(corsOptions));
 app.use(bodyParser());
