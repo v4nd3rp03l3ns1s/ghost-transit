@@ -9,6 +9,7 @@ const busDirectionController = require('../controllers/bus/busDirection');
 const busStopController = require('../controllers/bus/busStop');
 const trainLineController = require('../controllers/train/trainLine');
 const trainStopController = require('../controllers/train/trainStop');
+const trainStationController = require('../controllers/train/trainStation');
 
 //initialize all routers
 const router = new Router();
@@ -25,6 +26,7 @@ router.get('/bus/getBusTimes', busStopController.getBusTimes);
 //train routes
 router.get('/train/getAllTrainLines', trainLineController.getAllTrainLines);
 router.get('/train/getTrainLine', trainLineController.getTrainLine);
+router.get('/train/getLineStations', trainStationController.getLineStations);
 router.get('/train/getLineStops', trainStopController.getLineStops);
 router.get('/train/getTrainTimes', trainStopController.getTrainTimes);
 

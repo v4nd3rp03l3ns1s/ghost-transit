@@ -21,7 +21,7 @@ const busRouteController = {
     try {
       const busRouteResult = await db.BusRoute.findAll({
         attributes: ['routeID', 'routeName', 'routeColor'],
-        where: {routeID: ctx.query.rt}
+        where: { routeID: ctx.query.rt }
       });
       ctx.body = busRouteResult
       ctx.status = 200;

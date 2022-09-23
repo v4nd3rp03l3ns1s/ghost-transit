@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   TrainStation.associate = db => {
-    db.TrainStation.hasMany(db.TrainLineToStation, {
-      onDelete: "CASCADE",
-      foreignKey: 'stationID',
-      sourceKey: 'stationID'
-    });
+    // db.TrainStation.hasMany(db.TrainLineToStation, {
+    //   onDelete: "CASCADE",
+    //   foreignKey: 'stationID',
+    //   sourceKey: 'stationID'
+    // });
     db.TrainStation.hasMany(db.TrainStop, {
       onDelete: "CASCADE",
       foreignKey: 'stationID',
