@@ -4,11 +4,42 @@ const config = require('../config');
 const db = require('../../models/db');
 
 const devController = {
-  //get train stations/stops and populate them
+  populateBusRoutes: async function (ctx) {
+    try {
+      console.log('in function');
+      const response = await fetch(config.ctaBusURL + config.getBusRoutes + config.ctaBusKey + config.ctaBusJSON);
+      const data = await response.json();
+      //extracts just needed properties for each bus route
+      const filteredData = manageRoutes(data);
+      const newRoute = db.BusRoute;
+      console.log(filteredData);
+      console.log(newRoute);
+      filteredData.forEach(async (route) => (
+        await newRoute.create({
+          routeID: route.routeID,
+          routeName: route.routeName,
+          routeColor: route.routeColor
+        })
+      ));
+      ctx.body = filteredData;
+      ctx.status = 200;
+    } catch (err) {
+      ctx.body = err;
+      ctx.status = 500;
+    }
+  },
+  populateBusDirections: async function (ctx) {
+
+  },
+  populateBusStops: async function (ctx) {
+
+  },
+  //get train stations and populate them
   populateTrainStations: async function (ctx) {
     try {
       const response = await fetch(config.ctaDataURL);
       const data = await response.json();
+      //filter out duplicate stops to return just needed properties of unique parent stations
       const filteredData = manageStations(data);
       const newStation = db.TrainStation;
       filteredData.forEach(async (station) => (
@@ -24,15 +55,13 @@ const devController = {
       ctx.status = 500;
     }
   },
+  //get train stops and populate them
   populateTrainStops: async function (ctx) {
     try {
       const response = await fetch(config.ctaDataURL);
       const data = await response.json();
+      //extracts just needed properties of each child stop
       const filteredData = manageStops(data);
-      // const newStop = db.TrainStop;
-      // filteredData.forEach(async (stop) => (
-      //   await newStop.create({stop})
-      // ));
       const newStop = db.TrainStop;
       filteredData.forEach(async (stop) => (
         await newStop.create({
@@ -48,7 +77,7 @@ const devController = {
           p: stop.p,
           y: stop.y,
           pink: stop.pink,
-          org: stop.o
+          org: stop.org
         })
       ));
       ctx.body = filteredData;
@@ -58,6 +87,17 @@ const devController = {
       ctx.status = 500;
     }
   }
+}
+
+function manageRoutes (ctaData) {
+  const { routes } = ctaData['bustime-response'];
+  const filteredData = routes.map(({rt, rtnm, rtclr}) => ({
+    routeID: rt,
+    routeName: rtnm,
+    routeColor: rtclr
+  }));
+  console.log(filteredData);
+  return filteredData;
 }
 
 function manageStations (ctaData) {
@@ -88,18 +128,10 @@ function manageStops (ctaData) {
     brn: brn,
     p: p,
     y: y,
-    ink: pnk,
+    pink: pnk,
     org: o
   }));
   return filteredData;
 }
-
-// async function addStop(stationID, modelObject) {
-//   const parentStation = await db.TrainStation.findOne({where: {stationID: stationID}});
-//   const newStop = db.TrainStop;
-//   const addedStop = await newStop.create(modelObject);
-//   addedStop.setUser(parentStation);
-// }
-
 
 module.exports = devController;

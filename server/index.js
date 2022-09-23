@@ -14,12 +14,12 @@ let corsOptions = {
 };
 
 const db = require('./models/db.js');
-const { rootRouter } = require('./routers/index.js');
+const { router } = require('./routers/index.js');
 const PORT = config.serverPort;
 
 app.use(cors());
 app.use(bodyParser());
-app.use(rootRouter.routes(),);
+app.use(router.routes());
 
 (async function bootstrap () {
   await db.sequelize.sync();
