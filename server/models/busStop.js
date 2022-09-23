@@ -7,15 +7,17 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stopID: DataTypes.TEXT,
+    stopID: {
+      type: DataTypes.TEXT,
+      unique: true
+    },
     stopName: DataTypes.TEXT
   });
 
   BusStop.associate = db => {
     db.BusStop.belongsTo(db.BusDirection, {
       onDelete: "CASCADE",
-      foreignKey: 'direction',
-      targetKey: 'direction'
+      foreignKey: 'direction_id',
     });
     db.BusStop.belongsTo(db.BusRoute, {
       onDelete: "CASCADE",
@@ -25,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     db.BusStop.hasMany(db.UserBus, {
       onDelete: "CASCADE",
       foreignKey: 'stopID',
+      sourceKey: 'stopID'
     });
   };
 

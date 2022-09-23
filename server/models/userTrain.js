@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stopID: DataTypes.TEXT,
+    // stopID: DataTypes.TEXT,
     stopName: DataTypes.TEXT,
     direction: DataTypes.TEXT
   });

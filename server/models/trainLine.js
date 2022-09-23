@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    lineName: DataTypes.TEXT,
+    lineName: {
+      type: DataTypes.TEXT,
+      unique: true
+    },
     trainColor: DataTypes.TEXT
   });
 
@@ -15,10 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     db.TrainLine.hasMany(db.TrainLineToStation, {
       onDelete: "CASCADE",
       foreignKey: 'lineName',
+      sourceKey: 'lineName'
     });
     db.TrainLine.hasMany(db.UserTrain, {
       onDelete: "CASCADE",
       foreignKey: 'lineName',
+      sourceKey: 'lineName'
     });
   };
 

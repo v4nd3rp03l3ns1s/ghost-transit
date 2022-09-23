@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stopID: DataTypes.BIGINT,
+    stopID: {
+      type: DataTypes.TEXT,
+      unique: true
+    },
     stopName: DataTypes.TEXT,
     direction: DataTypes.TEXT,
     // stationID: DataTypes.TEXT,
@@ -24,12 +27,16 @@ module.exports = (sequelize, DataTypes) => {
   TrainStop.associate = db => {
     db.TrainStop.belongsTo(db.TrainStation, {
       onDelete: "CASCADE",
-      foreignKey: 'stationID',
+      foreignKey: {
+        name: 'stationID',
+        type: DataTypes.TEXT
+      },
       targetKey: 'stationID'
     });
     db.TrainStop.hasMany(db.UserTrain, {
       onDelete: "CASCADE",
-      foreignKey: 'stopID'
+      foreignKey: 'stopID',
+      sourceKey: 'stopID'
     });
   };
 

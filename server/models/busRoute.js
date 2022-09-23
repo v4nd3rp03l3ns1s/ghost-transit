@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    routeID: DataTypes.TEXT,
+    routeID: {
+      type: DataTypes.TEXT,
+      unique: true
+    },
     routeName: DataTypes.TEXT,
     routeColor: DataTypes.TEXT
   });
@@ -16,14 +19,17 @@ module.exports = (sequelize, DataTypes) => {
     db.BusRoute.hasMany(db.BusDirection, {
       onDelete: "CASCADE",
       foreignKey: 'routeID',
+      sourceKey: 'routeID'
     });
     db.BusRoute.hasMany(db.BusStop, {
       onDelete: "CASCADE",
       foreignKey: 'routeID',
+      sourceKey: 'routeID'
     });
     db.BusRoute.hasMany(db.UserBus, {
       onDelete: "CASCADE",
       foreignKey: 'routeID',
+      sourceKey: 'routeID'
     });
   };
 

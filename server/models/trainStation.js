@@ -7,18 +7,23 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stationID: DataTypes.BIGINT,
+    stationID: {
+      type: DataTypes.TEXT,
+      unique: true
+    },
     stationName: DataTypes.TEXT
   });
 
   TrainStation.associate = db => {
     db.TrainStation.hasMany(db.TrainLineToStation, {
       onDelete: "CASCADE",
-      foreignKey: 'stationID'
+      foreignKey: 'stationID',
+      sourceKey: 'stationID'
     });
     db.TrainStation.hasMany(db.TrainStop, {
       onDelete: "CASCADE",
-      foreignKey: 'stationID'
+      foreignKey: 'stationID',
+      sourceKey: 'stationID'
     });
   };
 

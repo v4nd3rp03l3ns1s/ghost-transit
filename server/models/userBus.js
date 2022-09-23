@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stopID: DataTypes.TEXT,
+    // stopID: DataTypes.TEXT,
     stopName: DataTypes.TEXT,
   });
 
@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     db.UserBus.belongsTo(db.BusDirection, {
       onDelete: "CASCADE",
-      foreignKey: 'direction',
-      targetKey: 'direction'
+      foreignKey: 'direction_id',
     });
     db.UserBus.belongsTo(db.BusStop, {
       onDelete: "CASCADE",

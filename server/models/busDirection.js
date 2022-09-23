@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   BusDirection.associate = db => {
     db.BusDirection.hasMany(db.BusStop, {
       onDelete: "CASCADE",
-      foreignKey: 'direction',
+      foreignKey: 'direction_id',
     });
     db.BusDirection.hasMany(db.UserBus, {
       onDelete: "CASCADE",
-      foreignKey: 'direction',
+      foreignKey: 'direction_id',
     });
     db.BusDirection.belongsTo(db.BusRoute, {
       onDelete: "CASCADE",
