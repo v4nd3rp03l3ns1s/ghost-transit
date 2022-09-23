@@ -27,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     db.UserBus.belongsTo(db.BusStop, {
       onDelete: "CASCADE",
-      foreignKey: 'stopID',
-      targetKey: 'stopID'
+      foreignKey: 'stop_id',
     });
   };
 

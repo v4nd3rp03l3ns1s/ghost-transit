@@ -7,10 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stopID: {
-      type: DataTypes.TEXT,
-      unique: true
-    },
+    stopID: DataTypes.TEXT,
     stopName: DataTypes.TEXT
   });
 
@@ -26,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     db.BusStop.hasMany(db.UserBus, {
       onDelete: "CASCADE",
-      foreignKey: 'stopID',
-      sourceKey: 'stopID'
+      foreignKey: 'stop_id',
     });
   };
 
