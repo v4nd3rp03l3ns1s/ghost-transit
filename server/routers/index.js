@@ -6,6 +6,7 @@ const Router = require('koa-router');
 const devController = require('../controllers/devUtility/devController');
 const busRouteController = require('../controllers/bus/busRoute');
 const busDirectionController = require('../controllers/bus/busDirection');
+const busStopController = require('../controllers/bus/busStop');
 
 //initialize all routers
 const router = new Router();
@@ -16,6 +17,8 @@ const router = new Router();
 router.get('/bus/getAllBusRoutes', busRouteController.getAllBusRoutes);
 router.get('/bus/getBusRoute', busRouteController.getBusRoute);
 router.get('/bus/getRouteDirections', busDirectionController.getRouteDirections);
+router.get('/bus/getRouteStops', busStopController.getRouteStops);
+router.get('/bus/getBusTimes', busStopController.getBusTimes);
 
 //train routes
 
