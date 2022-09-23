@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = db => {
     db.User.hasMany(db.UserVoyage, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: '_id',
+      as: 'user_id'
     });
   };
 

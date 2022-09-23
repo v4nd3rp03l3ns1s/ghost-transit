@@ -13,15 +13,18 @@ module.exports = (sequelize, DataTypes) => {
   UserVoyage.associate = db => {
     db.UserVoyage.belongsTo(db.User, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: '_id',
+      as: 'user_id'
     });
     db.UserVoyage.hasMany(db.UserBus, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: '_id',
+      as: 'voyage_id'
     });
     db.UserVoyage.hasMany(db.UserTrain, {
       onDelete: "CASCADE",
-      foreignKey: { allowNull: false }
+      foreignKey: '_id',
+      as: 'voyage_id'
     });
   };
 

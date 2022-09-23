@@ -33,12 +33,14 @@ const devController = {
       // filteredData.forEach(async (stop) => (
       //   await newStop.create({stop})
       // ));
+      const newStop = db.TrainStop;
       filteredData.forEach(async (stop) => (
-        addStop(stop.stationID, {
+        await newStop.create({
           stopID: stop.stopID,
           stopName: stop.stopName,
           direction: stop.direction,
-          stationID: stop.stationID
+          stationID: stop.stationID,
+          TrainStationId: stop.stationID
         })
       ));
       ctx.body = filteredData;
@@ -76,12 +78,12 @@ function manageStops (ctaData) {
   return filteredData;
 }
 
-async function addStop(stationID, modelObject) {
-  const parentStation = await db.TrainStation.findOne({where: {stationID: stationID}});
-  const newStop = db.TrainStop;
-  const addedStop = await newStop.create(modelObject);
-  addedStop.setUser(parentStation);
-}
+// async function addStop(stationID, modelObject) {
+//   const parentStation = await db.TrainStation.findOne({where: {stationID: stationID}});
+//   const newStop = db.TrainStop;
+//   const addedStop = await newStop.create(modelObject);
+//   addedStop.setUser(parentStation);
+// }
 
 
 module.exports = devController;
