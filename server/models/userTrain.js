@@ -15,16 +15,17 @@ module.exports = (sequelize, DataTypes) => {
   UserTrain.associate = db => {
     db.UserTrain.belongsTo(db.UserVoyage, {
       onDelete: "CASCADE",
-      foreignKey: '_id',
-      as: 'train_voyage_id'
+      foreignKey: 'train_voyage_id',
     });
     db.UserTrain.belongsTo(db.TrainLine, {
       onDelete: "CASCADE",
-      foreignKey: 'lineName'
+      foreignKey: 'lineName',
+      targetKey: 'lineName'
     });
     db.UserTrain.belongsTo(db.TrainStop, {
       onDelete: "CASCADE",
-      foreignKey: 'stopID'
+      foreignKey: 'stopID',
+      targetKey: 'stopID'
     });
   };
 

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    stationID: DataTypes.TEXT,
+    stationID: DataTypes.BIGINT,
     stationName: DataTypes.TEXT
   });
 

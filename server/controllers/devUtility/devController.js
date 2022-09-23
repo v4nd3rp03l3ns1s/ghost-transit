@@ -40,7 +40,15 @@ const devController = {
           stopName: stop.stopName,
           direction: stop.direction,
           stationID: stop.stationID,
-          TrainStationId: stop.stationID
+          // TrainStationId: stop.stationID,
+          red: stop.red,
+          blue: stop.blue,
+          g: stop.g,
+          brn: stop.brn,
+          p: stop.p,
+          y: stop.y,
+          pink: stop.pink,
+          org: stop.o
         })
       ));
       ctx.body = filteredData;
@@ -69,11 +77,19 @@ function manageStations (ctaData) {
 }
 
 function manageStops (ctaData) {
-  const filteredData = ctaData.map(({stop_id, stop_name, direction_id, map_id}) => ({
-   stopID: stop_id,
-   stopName: stop_name,
-   direction: direction_id,
-   stationID: map_id
+  const filteredData = ctaData.map(({stop_id, stop_name, direction_id, map_id, red, blue, g, brn, p, y, pnk, o}) => ({
+    stopID: stop_id,
+    stopName: stop_name,
+    direction: direction_id,
+    stationID: map_id,
+    red: red,
+    blue: blue,
+    g: g,
+    brn: brn,
+    p: p,
+    y: y,
+    ink: pnk,
+    org: o
   }));
   return filteredData;
 }
