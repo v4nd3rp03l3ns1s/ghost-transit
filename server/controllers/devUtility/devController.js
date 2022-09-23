@@ -4,16 +4,14 @@ const config = require('../config');
 const db = require('../../models/db');
 
 const devController = {
+  //get bus routes and populate them
   populateBusRoutes: async function (ctx) {
     try {
-      console.log('in function');
       const response = await fetch(config.ctaBusURL + config.getBusRoutes + config.ctaBusKey + config.ctaBusJSON);
       const data = await response.json();
       //extracts just needed properties for each bus route
       const filteredData = manageRoutes(data);
       const newRoute = db.BusRoute;
-      console.log(filteredData);
-      console.log(newRoute);
       filteredData.forEach(async (route) => (
         await newRoute.create({
           routeID: route.routeID,
@@ -28,8 +26,39 @@ const devController = {
       ctx.status = 500;
     }
   },
+  //get bus directions for each route and populate them
   populateBusDirections: async function (ctx) {
-
+    try {
+      //prepare routeIDs for API requests
+      const busRouteArray = await db.BusRoute.findAll({
+        attributes: ['routeID']
+      });
+      const mappedArray = busRouteArray.map(({ routeID }) => (routeID));
+      const formattedArray = [];
+      for (let i = 0; i < mappedArray.length; i++) {
+        const response = await fetch(config.ctaBusURL + config.getBusDirections + config.ctaBusKey + config.busRouteAffix + mappedArray[i] + config.ctaBusJSON);
+        const data = await response.json();
+        const directionsArr = extractDirections(data);
+        for (let j = 0; j < directionsArr.length; j++) {
+          formattedArray.push({
+            direction: directionsArr[j],
+            routeID: mappedArray[i]
+          });
+        }
+      }
+      const newDirection = db.BusDirection;
+      formattedArray.forEach(async (direction) => (
+        await newDirection.create({
+          direction: direction.direction,
+          routeID: direction.routeID
+        })
+      ));
+      ctx.body = formattedArray;
+      ctx.status = 200;
+    } catch (err) {
+      ctx.body = err;
+      ctx.status = 500;
+    }
   },
   populateBusStops: async function (ctx) {
 
@@ -69,7 +98,6 @@ const devController = {
           stopName: stop.stopName,
           direction: stop.direction,
           stationID: stop.stationID,
-          // TrainStationId: stop.stationID,
           red: stop.red,
           blue: stop.blue,
           g: stop.g,
@@ -98,6 +126,12 @@ function manageRoutes (ctaData) {
   }));
   console.log(filteredData);
   return filteredData;
+}
+
+function extractDirections (ctaData) {
+  const { directions } = ctaData['bustime-response'];
+  const filteredDirections = directions.map(({dir}) => (dir));
+  return filteredDirections;
 }
 
 function manageStations (ctaData) {
