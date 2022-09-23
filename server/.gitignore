@@ -1,6 +1,7 @@
 #Sensitive Data
 config.js
 ./controllers/config.js
+./middleware/config.js
 
 #Dev Utility
 ./devUtility/devController.js
