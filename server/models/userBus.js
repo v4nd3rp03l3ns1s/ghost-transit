@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     db.UserBus.belongsTo(db.UserVoyage, {
       onDelete: "CASCADE",
       foreignKey: '_id',
-      as: 'voyage_id'
+      as: 'bus_voyage_id'
     });
     db.UserBus.belongsTo(db.BusRoute, {
       onDelete: "CASCADE",
