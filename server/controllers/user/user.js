@@ -14,6 +14,14 @@ const userController = {
       ctx.body = 'User with that email already exists.';
       ctx.status = 409;
     }
+    try {
+      //manage hashing for password
+
+      //establish token for jwt
+    } catch (err) {
+      ctx.body = err;
+      ctx.status = 400;
+    }
   }
   //post? method for login
 
