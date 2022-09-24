@@ -1,5 +1,5 @@
 
-const config = require('../../server/config');
+const config = require('../config');
 const baseURL = config.serverURL;
 
 export const trainService = {
