@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 //component imports
 import HeaderBar from './components/HeaderBar';
@@ -7,10 +8,12 @@ import LookUpPage from './components/LookUpPage';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <HeaderBar />
-      <LookUpPage />
-    </SafeAreaView>
+    <PaperProvider>
+      <SafeAreaView style={styles.safeArea}>
+        <HeaderBar />
+        <LookUpPage />
+      </SafeAreaView>
+    </PaperProvider>
   );
 };
 
