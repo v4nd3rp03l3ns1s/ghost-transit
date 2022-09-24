@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const HeaderBar = () => {
   return (
     <View style={styles.headerBar}>
-      <Text>Station to Station</Text>
+      <Text style={styles.titleText}>Station to Station</Text>
     </View>
   );
 };
@@ -12,6 +12,17 @@ const HeaderBar = () => {
 const styles = StyleSheet.create({
   headerBar: {
     backgroundColor: '#5d536b',
+    flex: 0.1,
+    marginHorizontal: 10,
+    marginVertical: 10,
+  },
+  titleText: {
+    color: '#f3eaf4',
+    fontFamily: 'Menlo',
+    fontSize: '20',
+    fontWeight: '700',
+    marginLeft: 10,
+    marginTop: 48,
   },
 });
 

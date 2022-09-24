@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+
+//component imports
 import HeaderBar from './components/HeaderBar';
+import LookUpPage from './components/LookUpPage';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <HeaderBar />
+      <LookUpPage />
     </SafeAreaView>
   );
 };
@@ -13,6 +17,7 @@ const App = () => {
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: '#272838',
+    flex: 1,
   },
 });
 
