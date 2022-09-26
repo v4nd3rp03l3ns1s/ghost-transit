@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { List } from 'react-native-paper';
 
 //redux imports

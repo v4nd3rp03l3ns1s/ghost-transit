@@ -31,7 +31,6 @@ const train = (train = {
     case UPDATE_STOPLIST:
       return { ...train, stopList: action.trainStops };
     case UPDATE_TRAINPREDICT:
-      console.log('in prediction');
       return { ...train, trainPrediction: action.trainPredict };
     default:
       return train;
