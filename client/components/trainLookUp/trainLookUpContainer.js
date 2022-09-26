@@ -22,9 +22,11 @@ const TrainLookUpContainer = () => {
   const [error, setError] = useState(null);
 
   //redux states
-  const trainLine = useSelector(state => state.trainLine);
-  const trainStation = useSelector(state => state.trainStation);
-  const trainStop = useSelector(state => state.trainStop);
+  const trainLine = useSelector((state) => state.train.trainLine);
+  const trainStation = useSelector((state) => state.train.trainStation);
+  const trainStop = useSelector((state) => state.train.trainStop);
+  const stationList = useSelector((state) => state.train.stationList);
+  const stopList = useSelector((state) => state.train.stopList);
 
   const trainLines = async () => {
     try {
@@ -45,14 +47,15 @@ const TrainLookUpContainer = () => {
   }
 
   useEffect(() => {
+    console.log(stationList, 'use effect');
     trainLines();
-  }, []);
+  }, [stationList]);
 
   return (
     <View style={styles.lookUpContainer}>
       <List.Section title="Train Lookup" style={styles.lookUpCaptions}>
         <TrainLinesAccordion lines={lines} selectedLine={selectedLine} />
-        {stations ? <TrainStationsAccordion stations={stations} /> : null}
+        {stationList ? <TrainStationsAccordion stations={stationList} /> : <Text>dev: no Station selected</Text>}
         <List.Accordion
           title="El Stops"
           left={props => <List.Icon {...props} icon="octagon" />}>

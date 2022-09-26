@@ -13,9 +13,9 @@ import { getTrainStations } from '../../services/trainService';
 export function TrainLinesAccordion({ lines }) {
   const dispatch = useDispatch();
 
-  const handlePress = function (lineName) {
+  const handlePress = async function (lineName) {
     dispatch(updateTrainLine(lineName));
-    const trainStationList = trainService.getTrainStations(lineName);
+    const trainStationList = await trainService.getTrainStations(lineName);
     dispatch(updateStationList(trainStationList));
   };
 
