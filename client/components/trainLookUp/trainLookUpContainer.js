@@ -43,7 +43,7 @@ const TrainLookUpContainer = () => {
   return (
     <View style={styles.lookUpContainer}>
       <List.Section title="Train Lookup" style={styles.lookUpCaptions}>
-        <TrainLinesAccordion lines={lines} />
+        <TrainLinesAccordion lines={lines} selectedLine={selectedLine} />
         {stations ? <TrainStationsAccordion stations={stations} /> : null}
         <List.Accordion
           title="El Stops"

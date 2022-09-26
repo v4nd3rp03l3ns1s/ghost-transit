@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { List } from 'react-native-paper';
 
-function handleSelect(trainLine) {
-
-}
+//redux and state management imports
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTrainLine } from '../../actions/train';
 
 export function TrainLinesAccordion({ lines }) {
+  const dispatch = useDispatch();
+
+  function handleSelect(selectedLine) {
+    dispatch(updateTrainLine(selectedLine));
+  }
+
   console.log(lines, 'line accordion');
   return (
     <List.Accordion
@@ -16,7 +22,7 @@ export function TrainLinesAccordion({ lines }) {
       { lines ? lines.map((line) => (
         <List.Item
           title={line.fullName}
-          onPress={handleSelect}
+          onPress={handleSelect(line.lineName)}
         />
       )) : null}
     </List.Accordion>
