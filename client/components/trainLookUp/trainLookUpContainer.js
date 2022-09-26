@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 //import sub components
 import { TrainLinesAccordion } from './trainLinesAccordion';
 import { TrainStationsAccordion } from './trainStationsAccordion';
+import { TrainStopsAccordion } from './trainStopsAccordion';
+import { TrainPrediction } from './trainPrediction';
 
 //import services
 import { trainService } from '../../services/trainService';
@@ -27,6 +29,7 @@ const TrainLookUpContainer = () => {
   const trainStop = useSelector((state) => state.train.trainStop);
   const stationList = useSelector((state) => state.train.stationList);
   const stopList = useSelector((state) => state.train.stopList);
+  const trainPredict = useSelector((state) => state.train.trainPrediction);
 
   const trainLines = async () => {
     try {
@@ -47,21 +50,27 @@ const TrainLookUpContainer = () => {
   }
 
   useEffect(() => {
-    console.log(stationList, 'use effect');
     trainLines();
-  }, [stationList]);
+  }, [stationList, stopList, trainStop]);
+
+  console.log(trainStop, 'stop');
 
   return (
     <View style={styles.lookUpContainer}>
       <List.Section title="Train Lookup" style={styles.lookUpCaptions}>
         <TrainLinesAccordion lines={lines} selectedLine={selectedLine} />
-        {stationList ? <TrainStationsAccordion stations={stationList} /> : <Text>dev: no Station selected</Text>}
-        <List.Accordion
-          title="El Stops"
-          left={props => <List.Icon {...props} icon="octagon" />}>
-          <List.Item title="Testing" />
-        </List.Accordion>
+        {stationList ? (
+          <TrainStationsAccordion stations={stationList} />
+        ) : (
+          <Text>dev: no Station selected</Text>
+        )}
+        {stopList ? (
+          <TrainStopsAccordion stops={stopList} />
+        ) : (
+          <Text>dev error: no stops</Text>
+        )}
       </List.Section>
+      <TrainPrediction />
     </View>
   );
 };

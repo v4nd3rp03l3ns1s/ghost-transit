@@ -24,24 +24,28 @@ export const trainService = {
     try {
       const response = await fetch(`${baseURL}/train/getLineStations?ln=${line}`);
       const json = await response.json();
-      console.log(json, 'train stations)');
       return json;
     } catch (err) {
       console.log('station services error', err);
     }
-    return fetch(`${baseURL}/train/getLineStations?ln=${line}`)
-      .then((res) => res.json())
-      .then((data) => data)
-      .catch((err) => err);
   },
   getTrainStops: async function (line) {
-    return fetch(`${baseURL}/train/getLineStops?ln=${line}`)
-      .then((res) => res.json())
-      .then((data) => data)
-      .catch((err) => err);
+    try {
+      const response = await fetch(`${baseURL}/train/getLineStops?ln=${line}`);
+      const json = await response.json();
+      return json;
+    } catch (err) {
+      console.log('train stop services error', err);
+    }
   },
-  getTrainPredict: function () {
-    return null;
+  getTrainPredict: async function (stopID) {
+    try {
+      const response = await fetch(`${baseURL}/train/getTrainTimes?stp=${stopID}`)
+      const json = await response.json();
+      return json;
+    } catch (err) {
+      console.log('train time services error', err);
+    }
   },
 };
 

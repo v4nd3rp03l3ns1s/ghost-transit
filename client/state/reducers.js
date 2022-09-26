@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
 //import actions
-const { UPDATE_TRAINLINE, UPDATE_TRAINSTATION, UPDATE_TRAINSTOP, UPDATE_STATIONLIST, UPDATE_STOPLIST } = require('../actions/train');
+const {
+  UPDATE_TRAINLINE,
+  UPDATE_TRAINSTATION,
+  UPDATE_TRAINSTOP,
+  UPDATE_STATIONLIST,
+  UPDATE_STOPLIST,
+  UPDATE_TRAINPREDICT,
+} = require('../actions/train');
 
 const train = (train = {
     trainLine: '',
@@ -8,25 +15,24 @@ const train = (train = {
     trainStop: '',
     stationList: [],
     stopList: [],
+    trainPrediction: '',
   },
   action
 ) => {
   switch (action.type) {
     case UPDATE_TRAINLINE:
-      console.log('update_trainline', action.trainLine);
-      train.trainLine = action.trainLine;
-      return { train };
+      return { ...train, trainLine: action.trainLine };
     case UPDATE_TRAINSTATION:
-      console.log('update_trainStation', action.trainStation);
-      return { train };
+      return { ...train, trainStation: action.trainStation };
     case UPDATE_TRAINSTOP:
-      return { train };
+      return { ...train, trainStop: action.trainStop };
     case UPDATE_STATIONLIST:
-      console.log('update_stationlist', action.trainStations);
-      // train.stationList = action.trainStations;
       return { ...train, stationList: action.trainStations };
     case UPDATE_STOPLIST:
-      return { train };
+      return { ...train, stopList: action.trainStops };
+    case UPDATE_TRAINPREDICT:
+      console.log('in prediction');
+      return { ...train, trainPrediction: action.trainPredict };
     default:
       return train;
   }

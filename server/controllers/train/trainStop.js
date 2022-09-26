@@ -22,10 +22,8 @@ const trainStopController = {
   //get predicted train arrivals for a given stop
   getTrainTimes: async function (ctx) {
     try {
-      console.log(config.ctaTrainURL + config.getTrainArrivals + config.ctaTrainKey + config.trainStopAffix + ctx.query.stp + config.ctaTrainJSON);
-      const response = await fetch(config.ctaTrainURL + config.getTrainArrivals + config.ctaTrainKey + config.trainStopAffix + ctx.query.stp + config.ctaTrainJSON);
+      const response = await fetch(config.ctaTrainURL + config.getTrainArrivals + config.ctaTrainKey + config.trainStopAffix + ctx.query.stp + config.trainMaxResultsAffix + '1' + config.ctaTrainJSON);
       const data = await response.json();
-      console.log(data);
       //simplify and reformat data from API call
       const trainArrivals = cleanTimes(data);
       ctx.body = trainArrivals
