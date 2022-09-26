@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { List } from 'react-native-paper';
 
+//redux imports
+import { useSelector, useDispatch } from 'react-redux';
+
 //import sub components
 import { TrainLinesAccordion } from './trainLinesAccordion';
 import { TrainStationsAccordion } from './trainStationsAccordion';
@@ -17,6 +20,11 @@ const TrainLookUpContainer = () => {
   const [stops, setStops] = useState('');
   const [selectedStop, setSelectedStop] = useState('');
   const [error, setError] = useState(null);
+
+  //redux states
+  const trainLine = useSelector(state => state.trainLine);
+  const trainStation = useSelector(state => state.trainStation);
+  const trainStop = useSelector(state => state.trainStop);
 
   const trainLines = async () => {
     try {

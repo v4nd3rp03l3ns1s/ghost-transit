@@ -17,10 +17,18 @@ export const trainService = {
       console.log(explicatedLines);
       return explicatedLines;
     } catch (err) {
-      console.log('services error', err);
+      console.log('line services error', err);
     }
   },
   getTrainStations: async function (line) {
+    try {
+      const response = await fetch(`${baseURL}/train/getLineStations?ln=${line}`);
+      const json = await response.json();
+      console.log(json, 'train stations)');
+      return json;
+    } catch (err) {
+      console.log('station services error', err);
+    }
     return fetch(`${baseURL}/train/getLineStations?ln=${line}`)
       .then((res) => res.json())
       .then((data) => data)
