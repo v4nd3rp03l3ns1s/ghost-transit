@@ -4,6 +4,7 @@ const baseURL = config.serverURL;
 
 export const trainService = {
   getTrainLines: async function () {
+    console.log('client service');
     return fetch(`${baseURL}/train/getAllTrainLines`)
       .then((res) => res.json())
       .then((data) => data)
