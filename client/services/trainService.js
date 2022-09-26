@@ -8,7 +8,8 @@ export const trainService = {
       console.log('inside trainLines service start');
       const response = await fetch(`${baseURL}/train/getAllTrainLines`);
       const json = await response.json();
-      const cleanedLines = json.map(({ lineName, trainColor }) => ({
+      const cleanedLines = json.map(({ _id, lineName, trainColor }) => ({
+        _id: _id,
         lineName: lineName,
         trainColor: trainColor,
       }));

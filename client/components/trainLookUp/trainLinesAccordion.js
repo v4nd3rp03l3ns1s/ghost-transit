@@ -9,11 +9,11 @@ import { updateTrainLine } from '../../actions/train';
 export function TrainLinesAccordion({ lines }) {
   const dispatch = useDispatch();
 
-  function handleSelect(selectedLine) {
-    dispatch(updateTrainLine(selectedLine));
+  console.log(lines, 'line accordion');
+  const handlePress = function (lineName) {
+    dispatch(updateTrainLine(lineName));
   }
 
-  console.log(lines, 'line accordion');
   return (
     <List.Accordion
       title="El Lines"
@@ -21,8 +21,9 @@ export function TrainLinesAccordion({ lines }) {
       accessibilityLabel="El Lines">
       { lines ? lines.map((line) => (
         <List.Item
+          key={line._id}
           title={line.fullName}
-          onPress={handleSelect(line.lineName)}
+          onPress={() => dispatch(updateTrainLine(line.lineName))}
         />
       )) : null}
     </List.Accordion>
