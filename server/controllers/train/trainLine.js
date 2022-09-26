@@ -9,6 +9,7 @@ const trainLineController = {
       const trainLineArray = await db.TrainLine.findAll({
         attributes: ['_id', 'lineName', 'trainColor']
       });
+      console.log(trainLineArray, 'server');
       ctx.body = trainLineArray;
       ctx.status = 200;
     } catch (err) {

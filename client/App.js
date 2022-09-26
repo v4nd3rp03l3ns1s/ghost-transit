@@ -4,14 +4,14 @@ import { Provider as PaperProvider } from 'react-native-paper';
 
 //component imports
 import HeaderBar from './components/HeaderBar';
-import LookUpPage from './components/LookUpPage';
+import TrainLookUpContainer from './components/trainLookUp/trainLookUpContainer';
 
 const App = () => {
   return (
     <PaperProvider>
       <SafeAreaView style={styles.safeArea}>
         <HeaderBar />
-        <LookUpPage />
+        <TrainLookUpContainer />
       </SafeAreaView>
     </PaperProvider>
   );

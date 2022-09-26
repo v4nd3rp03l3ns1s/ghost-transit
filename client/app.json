@@ -28,6 +28,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "infoPlist": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSAllowsArbitraryLoads": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
     }
   }
 }

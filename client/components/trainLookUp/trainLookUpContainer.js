@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { List } from 'react-native-paper';
+import { TrainLinesAccordion } from './trainLinesAccordion';
 
-import { trainService } from '../services/trainService';
+import { trainService } from '../../services/trainService';
 
-const LookUpPage = () => {
+const TrainLookUpContainer = () => {
   const [lines, setLines] = useState('');
   const [selectedLine, setSelectedLine] = useState('');
   const [selectedStation, setSelectedStation] = useState('');
   const [selectedStop, setSelectedStop] = useState('');
-  const [ error, setError ] = useState(null);
+  const [error, setError] = useState(null);
 
   const trainLines = async () => {
-    const retrievedLines = await trainService.getTrainLines();
-    const cleanedLines = retrievedLines.map(({ lineName, trainColor }) => ({
-      lineName: lineName,
-      trainColor: trainColor,
-    }));
-    console.log(cleanedLines, 'cleaned');
-    setLines(cleanedLines);
-  }
+    try {
+      console.log('inside trainLines call');
+      const retrievedLines = await trainService.getTrainLines();
+      setLines(retrievedLines);
+    } catch (err) {
+      console.log('trainlines', err);
+    }
+  };
 
+  useEffect(() => {
+    trainLines();
+  }, []);
 
   return (
     <View style={styles.lookUpContainer}>
       <List.Section title="Train Lookup" style={styles.lookUpCaptions}>
-        <List.Accordion
-          title="El Lines"
-          left={props => <List.Icon {...props} icon="train" />}>
-          {lines.map(({lineName}) => {
-            <List.Item title={lineName} />;
-          })}
-          <List.Item title="Testing" />
-        </List.Accordion>
+        <TrainLinesAccordion lines={lines} />
         <List.Accordion
           title="El Stations"
           left={props => <List.Icon {...props} icon="factory" />}>
@@ -60,4 +57,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LookUpPage;
+export default TrainLookUpContainer;
