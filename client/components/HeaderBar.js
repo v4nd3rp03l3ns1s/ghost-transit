@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#f3eaf4',
     fontFamily: 'Menlo',
-    fontSize: '20',
+    fontSize: '14',
     fontWeight: '700',
     marginLeft: 10,
-    marginTop: 48,
+    marginTop: 35,
   },
 });
 
