@@ -12,7 +12,7 @@ const HeaderBar = () => {
 
 const styles = StyleSheet.create({
   headerBar: {
-    backgroundColor: '#4d456b',
+    backgroundColor: '#272838',
     flex: 0.1,
     marginHorizontal: 10,
     marginVertical: 10,
@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   subText: {
-    color: '#e5cedc',
+    color: '#b138ef',
     fontSize: '16',
+    fontWeight: '600',
     fontFamily: 'Menlo',
   }
 });

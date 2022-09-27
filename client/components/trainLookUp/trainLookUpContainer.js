@@ -61,7 +61,7 @@ const TrainLookUpContainer = () => {
 const styles = StyleSheet.create({
   lookUpContainer: {
     flex: 1,
-    backgroundColor: '#7d6b91',
+    backgroundColor: '#272838',
     marginHorizontal: 10,
     borderRadius: 15,
   },

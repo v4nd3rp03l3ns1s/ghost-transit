@@ -42,25 +42,6 @@ export function TrainPrediction({ stop }) {
           <Text style={styles.predictBottomText}>None</Text>
         )}
       </Button>
-      {/* {trainStop ? (
-        <IconButton
-          style={styles.buttonStyle}
-          mode="outlined"
-          compact="true"
-          accesibilityLabel="Refresh prediction button"
-          onPress={() => getPredictions(trainStop)}
-          icon="clock"
-          color="#e5cedc"
-        />
-      ) : null}
-      {trainPredict ? (
-        <View style={styles.predictTextContainer}>
-          <Text style={styles.predictTopText} color={trainLine.color}>Train #{trainPredict.runID}</Text>
-          <Text style={styles.predictBottomText}>{countdownCalculate(trainPredict.countdown)}</Text>
-        </View>
-      ) : (
-        <Text>No train predicted.</Text>
-      )} */}
     </View>
   )
 }
@@ -79,7 +60,7 @@ const styles = StyleSheet.create({
     marginLeft: 84,
   },
   predictTextContainer: {
-    backgroundColor: '#f3eaf4',
+    backgroundColor: '#7d6b91',
     width: 138,
     height: 42,
     justifyContents: 'center',
@@ -93,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 3,
   },
   predictBottomText: {
-    color: '#272838',
+    color: '#f3eaf4',
     fontWeight: '500',
     fontSize: 16,
   },

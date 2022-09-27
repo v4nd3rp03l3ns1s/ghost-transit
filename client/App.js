@@ -33,7 +33,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: '#272838',
+    backgroundColor: '#4d456b',
     flex: 1,
   },
 });
