@@ -22,7 +22,8 @@ export function TrainLinesAccordion({ lines }) {
   return (
     <List.Accordion
       title={trainLine.fullName || 'El Lines'}
-      left={props => <List.Icon {...props} icon="train" color={trainLine.trainColor} />}
+      style={styles.listParent}
+      left={props => <List.Icon {...props} style={styles.listIcon} icon="train" color={trainLine.trainColor} />}
       accessibilityLabel="El Lines"
     >
       <ScrollView height="60%">
@@ -31,6 +32,7 @@ export function TrainLinesAccordion({ lines }) {
               <List.Item
                 key={line._id}
                 title={line.fullName}
+                style={styles.listItem}
                 onPress={() => handlePress(line)}
               />
             ))
@@ -39,3 +41,16 @@ export function TrainLinesAccordion({ lines }) {
     </List.Accordion>
   );
 }
+
+const styles = StyleSheet.create({
+  listParent: {
+    backgroundColor: '#f3eaf4',
+  },
+  listIcon: {
+    backgroundColor: '#4d456b',
+    borderRadius: 40,
+  },
+  listItem: {
+    backgroundColor: '#e5cedc',
+  },
+});

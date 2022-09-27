@@ -28,7 +28,8 @@ export function TrainStationsAccordion({ stations }) {
   return (
     <List.Accordion
       title={trainStation.stationName || 'Select El Station'}
-      left={props => <List.Icon {...props} icon="home" color={trainLine.trainColor} />}
+      style={styles.listParent}
+      left={props => <List.Icon {...props} icon="home" color={trainLine.trainColor} style={styles.listIcon}/>}
       accessibilityLabel="El Stations"
     >
       <ScrollView height="45%">
@@ -37,6 +38,7 @@ export function TrainStationsAccordion({ stations }) {
               <List.Item
                 key={station._id}
                 title={station.stationName}
+                style={styles.listItem}
                 onPress={() => handlePress(station)}
               />
             ))
@@ -45,3 +47,16 @@ export function TrainStationsAccordion({ stations }) {
     </List.Accordion>
   );
 }
+
+const styles = StyleSheet.create({
+  listParent: {
+    backgroundColor: '#f3eaf4',
+  },
+  listIcon: {
+    backgroundColor: '#4d456b',
+    borderRadius: 40,
+  },
+  listItem: {
+    backgroundColor: '#e5cedc',
+  },
+});

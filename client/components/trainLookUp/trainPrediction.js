@@ -88,5 +88,5 @@ const styles = StyleSheet.create({
   predictBottomText: {
     color: '#272838',
     fontWeight: '700',
-  }
+  },
 });

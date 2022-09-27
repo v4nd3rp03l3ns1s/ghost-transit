@@ -59,7 +59,7 @@ const TrainLookUpContainer = () => {
     <View style={styles.lookUpContainer}>
       <ScrollView style={styles.lookUpScroll}>
         <List.Section style={styles.lookUpCaptions}>
-          <TrainLinesAccordion lines={lines} selectedLine={selectedLine} />
+          <TrainLinesAccordion lines={lines} style={styles.trainAccordion} selectedLine={selectedLine} />
           {stationList ? (
             <TrainStationsAccordion stations={stationList} />
           ) : (
@@ -89,7 +89,9 @@ const styles = StyleSheet.create({
   lookUpCaptions: {
     color: '#f3eaf4',
     fontFamily: 'Menlo',
-  }
+    fontSize: 34,
+    paddingHorizontal: 10,
+  },
 });
 
 export default TrainLookUpContainer;

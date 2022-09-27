@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider, ToggleButton } from 'react-native-paper';
 
 //redux imports
 import { Provider as ReduxProvider } from 'react-redux';
@@ -10,6 +10,7 @@ import { store, persistor } from './state/store';
 //component imports
 import HeaderBar from './components/HeaderBar';
 import TrainLookUpContainer from './components/trainLookUp/trainLookUpContainer';
+import ToggleButtonContainer from './components/ToggleButtonContainer';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <SafeAreaView style={styles.safeArea}>
             <HeaderBar />
             <TrainLookUpContainer />
+            <ToggleButtonContainer />
           </SafeAreaView>
         </PaperProvider>
       </PersistGate>

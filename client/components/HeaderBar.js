@@ -5,25 +5,33 @@ const HeaderBar = () => {
   return (
     <View style={styles.headerBar}>
       <Text style={styles.titleText}>Station to Station</Text>
+      <Text style={styles.subText}>CTA Mobile Tracking</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerBar: {
-    backgroundColor: '#5d536b',
+    backgroundColor: '#4d456b',
     flex: 0.1,
     marginHorizontal: 10,
     marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 40,
   },
   titleText: {
-    color: '#f3eaf4',
+    color: '#e5cedc',
     fontFamily: 'Menlo',
-    fontSize: '14',
+    fontSize: '20',
     fontWeight: '700',
-    marginLeft: 10,
-    marginTop: 35,
+    marginBottom: 5,
   },
+  subText: {
+    color: '#e5cedc',
+    fontSize: '16',
+    fontFamily: 'Menlo',
+  }
 });
 
 export default HeaderBar;
