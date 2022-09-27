@@ -5,6 +5,8 @@ import { List, ToggleButton } from 'react-native-paper';
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTransitTrain, updateTransitBus } from '../actions/transit';
+import { BusPrediction } from './busLookUp/busPrediction';
+import { TrainPrediction } from './trainLookUp/trainPrediction';
 
 const ToggleButtonContainer = () => {
   const dispatch = useDispatch();
@@ -23,12 +25,13 @@ const ToggleButtonContainer = () => {
         <View style={styles.toggleContainer}>
           <ToggleButton
             icon="train"
-            style={styles.selectedButton}
+            style={styles.selectedTrain}
             onPress={selectTrain}
           />
+          <TrainPrediction />
           <ToggleButton
             icon="bus"
-            style={styles.toggleButton}
+            style={styles.unselectedBus}
             onPress={selectBus}
           />
         </View>
@@ -36,12 +39,13 @@ const ToggleButtonContainer = () => {
         <View style={styles.toggleContainer}>
           <ToggleButton
             icon="train"
-            style={styles.toggleButton}
+            style={styles.unselectedTrain}
             onPress={selectTrain}
           />
+          <BusPrediction />
           <ToggleButton
             icon="bus"
-            style={styles.selectedButton}
+            style={styles.selectedBus}
             onPress={selectBus}
           />
         </View>
@@ -58,16 +62,32 @@ const styles = StyleSheet.create({
     flex: 0.2,
     marginTop: 20,
     flexDirection: 'row',
-    width: 100,
+    width: 368,
   },
-  selectedButton: {
+  selectedTrain: {
     flex: 1,
     backgroundColor: '#e5cedc',
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
   },
-  toggleButton: {
+  unselectedTrain: {
+    flex: 1,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+    backgroundColor: '#4d456b',
+  },
+  selectedBus: {
+    flex: 1,
+    backgroundColor: '#e5cedc',
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  unselectedBus: {
     flex: 1,
     backgroundColor: '#4d456b',
-  }
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+  },
 });
 
 export default ToggleButtonContainer;

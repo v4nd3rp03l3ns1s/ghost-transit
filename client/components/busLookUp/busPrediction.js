@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
-import { List, IconButton } from 'react-native-paper';
+import { List, IconButton, Button } from 'react-native-paper';
 
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
@@ -31,37 +31,19 @@ export function BusPrediction({ stop }) {
   };
 
   return (
-    <View style={styles.predictContainer}>
-      {busStop ? (
-        <IconButton
-          style={styles.buttonStyle}
-          mode="outlined"
-          compact="true"
-          accesibilityLabel="Refresh prediction button"
-          onPress={() => getPredictions(busStop)}
-          icon="clock"
-          color="#e5cedc"
-        />
-      ) : null}
-      {busPredict ? (
-        <View style={styles.predictTextContainer}>
-          <Text style={styles.predictTopText} color={busRoute.routeColor}>Bus #{busPredict.vehicleID}</Text>
+    <View>
+      <Button style={styles.predictTextContainer} onPress={() => getPredictions(busStop)}>
+        {busPredict ? (
           <Text style={styles.predictBottomText}>{countdownCalculate(busPredict.countdown)}</Text>
-        </View>
-      ) : (
-        <Text>No bus predicted.</Text>
-      )}
+        ) : (
+          <Text style={styles.predictBottomText}>None</Text>
+        )}
+      </Button>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  predictContainer: {
-    flexDirection: 'row',
-    justifyContents: 'space-between',
-    alignItems: 'center',
-    marginTop: 20,
-  },
   buttonStyle: {
     width: 60,
     height: 60,
@@ -70,19 +52,21 @@ const styles = StyleSheet.create({
   },
   predictTextContainer: {
     backgroundColor: '#f3eaf4',
-    width: 120,
-    height: 60,
-    borderRadius: 25,
+    width: 138,
+    height: 42,
     justifyContents: 'center',
     alignItems: 'center',
-    paddingVertical: 12,
+    borderRadius: 5,
   },
   predictTopText: {
     color: '#7d6b91',
-    fontWeight: '700',
+    fontWeight: '500',
+    marginTop: 3,
+    fontSize: 3,
   },
   predictBottomText: {
     color: '#272838',
-    fontWeight: '700',
+    fontWeight: '500',
+    fontSize: 16,
   },
 });

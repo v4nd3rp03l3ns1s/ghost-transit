@@ -28,7 +28,7 @@ export function BusRoutesAccordion({ routes }) {
       left={props => <List.Icon {...props} style={styles.listIcon} icon="bus" color={busRoute.routeColor} />}
       accessibilityLabel="Bus Routes"
     >
-      <ScrollView height="22%">
+      <ScrollView height="21.3%">
         {routes
           ? routes.map((route) => (
             <List.Item

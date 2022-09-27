@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Animated, ScrollView, Divider } from 'react-native';
 import { List } from 'react-native-paper';
 
 //redux and state management imports
@@ -30,7 +30,7 @@ export function BusStopsAccordion({ stops }) {
       left={props => <List.Icon {...props} style={styles.listIcon} icon="arrow-down-bold-hexagon-outline" color={busRoute.routeColor} />}
       accessibilityLabel="Bus Stops"
     >
-      <ScrollView height="31%">
+      <ScrollView height="37.8%">
         {stops
           ? stops.map((stop) => (
               <List.Item

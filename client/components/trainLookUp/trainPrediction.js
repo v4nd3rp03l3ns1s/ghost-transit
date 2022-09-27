@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
-import { List, IconButton } from 'react-native-paper';
+import { List, IconButton, Button } from 'react-native-paper';
 
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,8 +34,15 @@ export function TrainPrediction({ stop }) {
   };
 
   return (
-    <View style={styles.predictContainer}>
-      {trainStop ? (
+    <View>
+      <Button style={styles.predictTextContainer} onPress={() => getPredictions(trainStop)}>
+        {trainPredict ? (
+          <Text style={styles.predictBottomText}>{countdownCalculate(trainPredict.countdown)}</Text>
+        ) : (
+          <Text style={styles.predictBottomText}>None</Text>
+        )}
+      </Button>
+      {/* {trainStop ? (
         <IconButton
           style={styles.buttonStyle}
           mode="outlined"
@@ -53,7 +60,7 @@ export function TrainPrediction({ stop }) {
         </View>
       ) : (
         <Text>No train predicted.</Text>
-      )}
+      )} */}
     </View>
   )
 }
@@ -73,19 +80,21 @@ const styles = StyleSheet.create({
   },
   predictTextContainer: {
     backgroundColor: '#f3eaf4',
-    width: 120,
-    height: 60,
-    borderRadius: 25,
+    width: 138,
+    height: 42,
     justifyContents: 'center',
     alignItems: 'center',
-    paddingVertical: 12,
+    borderRadius: 5,
   },
   predictTopText: {
     color: '#7d6b91',
-    fontWeight: '700',
+    fontWeight: '500',
+    marginTop: 3,
+    fontSize: 3,
   },
   predictBottomText: {
     color: '#272838',
-    fontWeight: '700',
+    fontWeight: '500',
+    fontSize: 16,
   },
 });

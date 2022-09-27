@@ -29,7 +29,7 @@ export function BusDirectionsAccordion({ directions }) {
       left={props => <List.Icon {...props} icon="bank-outline" color={busRoute.routeColor} style={styles.listIcon}/>}
       accessibilityLabel="Route Directions"
     >
-      <ScrollView height="28.5%">
+      <ScrollView height="30%">
         {directions
           ? directions.map((direction) => (
               <List.Item
@@ -48,6 +48,7 @@ export function BusDirectionsAccordion({ directions }) {
 const styles = StyleSheet.create({
   listParent: {
     backgroundColor: '#f3eaf4',
+    fontFamily: 'Menlo',
   },
   listIcon: {
     backgroundColor: '#4d456b',

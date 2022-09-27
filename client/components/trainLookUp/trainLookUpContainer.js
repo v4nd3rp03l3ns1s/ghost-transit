@@ -53,7 +53,6 @@ const TrainLookUpContainer = () => {
             <Text>dev error: no stops</Text>
           )}
         </List.Section>
-        {trainPredict ? <TrainPrediction /> : null}
       </ScrollView>
     </View>
   );
@@ -64,6 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#7d6b91',
     marginHorizontal: 10,
+    borderRadius: 15,
   },
   lookUpScroll: {
     height: '100%',

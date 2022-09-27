@@ -23,7 +23,7 @@ const LookUpContainer = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.8,
+    flex: 0.78,
   }
 });
 

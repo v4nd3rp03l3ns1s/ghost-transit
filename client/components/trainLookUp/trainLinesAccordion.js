@@ -27,7 +27,7 @@ export function TrainLinesAccordion({ lines }) {
       left={props => <List.Icon {...props} style={styles.listIcon} icon="train" color={trainLine.trainColor} />}
       accessibilityLabel="El Lines"
     >
-      <ScrollView height="58%">
+      <ScrollView height="57%">
         {lines
           ? lines.map((line) => (
               <List.Item
