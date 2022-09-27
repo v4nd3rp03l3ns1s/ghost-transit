@@ -22,10 +22,10 @@ export function TrainLinesAccordion({ lines }) {
   return (
     <List.Accordion
       title={trainLine.fullName || 'El Lines'}
-      left={props => <List.Icon {...props} icon="train" />}
+      left={props => <List.Icon {...props} icon="train" color={trainLine.trainColor} />}
       accessibilityLabel="El Lines"
     >
-      <ScrollView height="45%">
+      <ScrollView height="60%">
         {lines
           ? lines.map((line) => (
               <List.Item

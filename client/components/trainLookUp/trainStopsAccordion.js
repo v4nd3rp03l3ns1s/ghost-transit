@@ -9,6 +9,7 @@ import { trainService } from '../../services/trainService';
 
 export function TrainStopsAccordion({ stops }) {
   const dispatch = useDispatch();
+  const trainLine = useSelector((state) => state.train.trainLine);
   const trainStop = useSelector((state) => state.train.trainStop);
 
   const handlePress = async function (stop) {
@@ -18,7 +19,7 @@ export function TrainStopsAccordion({ stops }) {
   return (
     <List.Accordion
       title={trainStop.stopName || 'El Stops'}
-      left={props => <List.Icon {...props} icon="octagon" />}
+      left={props => <List.Icon {...props} icon="octagon" color={trainLine.trainColor} />}
       accessibilityLabel="El Stops"
     >
       <ScrollView height="45%">
