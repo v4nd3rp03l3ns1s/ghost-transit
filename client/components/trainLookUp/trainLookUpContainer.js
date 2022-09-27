@@ -22,6 +22,7 @@ const TrainLookUpContainer = () => {
   const trainStop = useSelector((state) => state.train.trainStop);
   const stationList = useSelector((state) => state.train.stationList);
   const stopList = useSelector((state) => state.train.stopList);
+  const trainPredict = useSelector((state) => state.train.trainPrediction);
 
   const trainLines = async () => {
     try {
@@ -52,7 +53,7 @@ const TrainLookUpContainer = () => {
             <Text>dev error: no stops</Text>
           )}
         </List.Section>
-        <TrainPrediction />
+        {trainPredict ? <TrainPrediction /> : null}
       </ScrollView>
     </View>
   );

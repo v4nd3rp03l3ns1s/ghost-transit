@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
-import { updateBusRoute, updateDirectionList, updateBusDirection, updateBusStop } from '../../actions/bus';
+import { updateBusRoute, updateDirectionList, updateBusDirection, updateBusStop, updateBusPredict } from '../../actions/bus';
 import { busService } from '../../services/busService';
 
 export function BusRoutesAccordion({ routes }) {
@@ -13,8 +13,9 @@ export function BusRoutesAccordion({ routes }) {
 
   const handlePress = async function (route) {
     dispatch(updateBusRoute(route));
-    dispatch(updateBusDirection({}));
-    dispatch(updateBusStop({}));
+    dispatch(updateBusDirection(''));
+    dispatch(updateBusStop(''));
+    dispatch(updateBusPredict(''));
     const busDirectionList = await busService.getBusDirections(route.routeID);
     console.log(busDirectionList, typeof busDirectionList, 'dl');
     dispatch(updateDirectionList(busDirectionList));
@@ -27,7 +28,7 @@ export function BusRoutesAccordion({ routes }) {
       left={props => <List.Icon {...props} style={styles.listIcon} icon="bus" color={busRoute.routeColor} />}
       accessibilityLabel="Bus Routes"
     >
-      <ScrollView height="60%">
+      <ScrollView height="22%">
         {routes
           ? routes.map((route) => (
             <List.Item

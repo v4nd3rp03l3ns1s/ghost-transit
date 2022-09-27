@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
-import { updateBusDirection, updateBusStopList } from '../../actions/bus';
+import { updateBusDirection, updateBusStopList, updateBusStop, updateBusPredict } from '../../actions/bus';
 import { busService } from '../../services/busService';
 
 export function BusDirectionsAccordion({ directions }) {
@@ -16,6 +16,8 @@ export function BusDirectionsAccordion({ directions }) {
 
   const handlePress = async function (directionObj) {
     dispatch(updateBusDirection(directionObj));
+    dispatch(updateBusStop(''));
+    dispatch(updateBusPredict(''));
     const busStopList = await busService.getBusStops(directionObj);
     dispatch(updateBusStopList(busStopList));
   };

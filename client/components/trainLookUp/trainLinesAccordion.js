@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
-import { updateTrainLine, updateStationList, updateTrainStation, updateTrainStop } from '../../actions/train';
+import { updateTrainLine, updateStationList, updateTrainStation, updateTrainStop, updateTrainPredict } from '../../actions/train';
 import { trainService } from '../../services/trainService';
 
 export function TrainLinesAccordion({ lines }) {
@@ -15,6 +15,7 @@ export function TrainLinesAccordion({ lines }) {
     dispatch(updateTrainLine(line));
     dispatch(updateTrainStation({}));
     dispatch(updateTrainStop({}));
+    dispatch(updateTrainPredict(''));
     const trainStationList = await trainService.getTrainStations(line.lineName);
     dispatch(updateStationList(trainStationList));
   };
@@ -26,7 +27,7 @@ export function TrainLinesAccordion({ lines }) {
       left={props => <List.Icon {...props} style={styles.listIcon} icon="train" color={trainLine.trainColor} />}
       accessibilityLabel="El Lines"
     >
-      <ScrollView height="60%">
+      <ScrollView height="58%">
         {lines
           ? lines.map((line) => (
               <List.Item

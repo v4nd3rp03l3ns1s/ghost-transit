@@ -22,6 +22,7 @@ const BusLookUpContainer = () => {
   const busStop = useSelector((state) => state.bus.busStop);
   const directionList = useSelector((state) => state.bus.directionList);
   const busStopList = useSelector((state) => state.bus.busStopList);
+  const busPredict = useSelector((state) => state.bus.busPrediction);
 
   const busRoutes = async () => {
     try {
@@ -53,14 +54,31 @@ const BusLookUpContainer = () => {
             <Text>dev error: no stops</Text>
           )}
         </List.Section>
-        <BusPrediction />
+        {busPredict ? (
+          <BusPrediction />
+        ) : (
+          null
+        )}
       </ScrollView>
     </View>
   );
 };
 
 const styles =StyleSheet.create({
-
+  lookUpContainer: {
+    flex: 1,
+    backgroundColor: '#7d6b91',
+    marginHorizontal: 10,
+  },
+  lookUpScroll: {
+    height: '100%',
+  },
+  lookUpCaptions: {
+    color: '#f3eaf4',
+    fontFamily: 'Menlo',
+    fontSize: 34,
+    paddingHorizontal: 10,
+  },
 });
 
 export default BusLookUpContainer;
