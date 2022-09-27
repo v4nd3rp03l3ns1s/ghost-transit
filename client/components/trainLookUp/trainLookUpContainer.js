@@ -41,7 +41,6 @@ const TrainLookUpContainer = () => {
   };
   const trainStations = async () => {
     try {
-      console.log('inside trainLines call');
       const retrievedLines = await trainService.getTrainStations();
       setStations(retrievedLines);
     } catch (err) {
@@ -52,8 +51,6 @@ const TrainLookUpContainer = () => {
   useEffect(() => {
     trainLines();
   }, [stationList, stopList, trainStop]);
-
-  console.log(trainStop, 'stop');
 
   return (
     <View style={styles.lookUpContainer}>
@@ -79,7 +76,7 @@ const TrainLookUpContainer = () => {
 
 const styles = StyleSheet.create({
   lookUpContainer: {
-    flex: 0.80,
+    flex: 1,
     backgroundColor: '#7d6b91',
     marginHorizontal: 10,
   },

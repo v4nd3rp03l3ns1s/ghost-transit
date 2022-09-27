@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 //import actions
 const {
+  UPDATE_TRANSITTRAIN,
+  UPDATE_TRANSITBUS,
+} = require('../actions/transit');
+const {
   UPDATE_TRAINLINE,
   UPDATE_TRAINSTATION,
   UPDATE_TRAINSTOP,
@@ -36,5 +40,19 @@ const train = (train = {
       return train;
   }
 };
+const transit = (transit = {
+  mode: 'train',
+  },
+  action
+) => {
+  switch (action.type) {
+    case UPDATE_TRANSITTRAIN:
+      return { ...transit, mode: 'train' };
+    case UPDATE_TRANSITBUS:
+      return { ...transit, mode: 'bus'};
+    default:
+      return transit;
+  }
+};
 
-export default combineReducers({ train });
+export default combineReducers({ transit, train });

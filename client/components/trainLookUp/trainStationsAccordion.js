@@ -29,7 +29,7 @@ export function TrainStationsAccordion({ stations }) {
     <List.Accordion
       title={trainStation.stationName || 'Select El Station'}
       style={styles.listParent}
-      left={props => <List.Icon {...props} icon="home" color={trainLine.trainColor} style={styles.listIcon}/>}
+      left={props => <List.Icon {...props} icon="bank-outline" color={trainLine.trainColor} style={styles.listIcon}/>}
       accessibilityLabel="El Stations"
     >
       <ScrollView height="45%">
