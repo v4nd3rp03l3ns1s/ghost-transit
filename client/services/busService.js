@@ -7,6 +7,13 @@ export const busService = {
       //bus/getAllBusRoutes
       const response = await fetch (`${baseURL}/bus/getAllBusRoutes`);
       const json = await response.json();
+      const cleanedRoutes = json.map(({ _id, routeID, routeName, routeColor }) => ({
+        _id: _id,
+        routeID: routeID,
+        routeName: routeName,
+        routeColor: routeColor,
+      }));
+      return cleanedRoutes;
     } catch (err) {
       console.log('routes services error', err);
     }
@@ -14,6 +21,9 @@ export const busService = {
   getBusDirections: async function (route) {
     try {
       //bus/getRouteDirections
+      const response = await fetch(`${baseURL}/bus/getRouteDirections?rt=${route}`);
+      const json = await response.json();
+      return json;
     } catch (err) {
       console.log('directions services error', err);
     }

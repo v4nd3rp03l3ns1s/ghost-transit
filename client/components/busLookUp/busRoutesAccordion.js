@@ -12,6 +12,7 @@ export function BusRoutesAccordion({ routes }) {
   const busRoute = useSelector((state) => state.bus.busRoute);
 
   const handlePress = async function (route) {
+    console.log('bus routes handlePress yes');
     dispatch(updateBusRoute(route));
     dispatch(updateBusDirection({}));
     dispatch(updateBusStop({}));
@@ -31,7 +32,7 @@ export function BusRoutesAccordion({ routes }) {
           ? routes.map((route) => (
             <List.Item
               key={route._id}
-              title={route.routeName}
+              title={route.routeID + ': ' + route.routeName}
               style={styles.listItem}
               onPress={() => handlePress(route)}
             />

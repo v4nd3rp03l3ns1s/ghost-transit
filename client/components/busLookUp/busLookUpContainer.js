@@ -25,8 +25,19 @@ const BusLookUpContainer = () => {
   const busStopList = useSelector((state) => state.bus.busStopList);
 
   const busRoutes = async () => {
+    try {
+      console.log('in bus routes');
+      const retrievedRoutes = await busService.getBusRoutes();
+      setRoutes(retrievedRoutes);
+    } catch (err) {
+      console.error('Bus Routes call', err);
+    }
+  };
 
-  }
+  useEffect(() => {
+    busRoutes();
+    console.log(directionList, 'directions');
+  }, [directionList, busStopList, busStop])
 
   return (
     <View style={styles.lookUpContainer}>
@@ -36,7 +47,7 @@ const BusLookUpContainer = () => {
           {directionList ? (
             <BusDirectionsAccordion directions={directionList} />
           ) : (
-            <Text>dev: no Direction selected</Text>
+            <Text>dev: no Route selected</Text>
           )}
           {busStopList ? (
             <BusStopsAccordion stops={busStopList} />

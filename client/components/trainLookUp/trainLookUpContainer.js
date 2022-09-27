@@ -32,14 +32,6 @@ const TrainLookUpContainer = () => {
       console.error('Train Lines call', err);
     }
   };
-  const trainStations = async () => {
-    try {
-      const retrievedLines = await trainService.getTrainStations();
-      setStations(retrievedLines);
-    } catch (err) {
-      console.error('Train Stations call', err);
-    }
-  }
 
   useEffect(() => {
     trainLines();

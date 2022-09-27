@@ -4,7 +4,6 @@ const baseURL = config.serverURL;
 export const trainService = {
   getTrainLines: async function () {
     try {
-      console.log('inside trainLines service start');
       const response = await fetch(`${baseURL}/train/getAllTrainLines`);
       const json = await response.json();
       const cleanedLines = json.map(({ _id, lineName, trainColor }) => ({
@@ -13,7 +12,6 @@ export const trainService = {
         trainColor: trainColor,
       }));
       const explicatedLines = explicateLines(cleanedLines);
-      console.log(explicatedLines);
       return explicatedLines;
     } catch (err) {
       console.log('line services error', err);
