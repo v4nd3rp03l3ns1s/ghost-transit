@@ -5,6 +5,7 @@ import { Provider as PaperProvider, ToggleButton } from 'react-native-paper';
 //redux and state management imports
 import { useSelector, useDispatch } from 'react-redux';
 import TrainLookUpContainer from './trainLookUp/trainLookUpContainer';
+import BusLookUpContainer from './busLookUp/busLookUpContainer';
 
 const LookUpContainer = () => {
   const transitState = useSelector((state) => state.transit.mode);
@@ -14,7 +15,7 @@ const LookUpContainer = () => {
       {transitState === 'train' ? (
         <TrainLookUpContainer />
       ) : (
-        <Text>Bus filler</Text>
+        <BusLookUpContainer />
       )}
     </View>
   );

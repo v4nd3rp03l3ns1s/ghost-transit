@@ -18,18 +18,11 @@ const TrainLookUpContainer = () => {
   const [lines, setLines] = useState('');
   const [selectedLine, setSelectedLine] = useState('');
   const [stations, setStations] = useState('');
-  const [selectedStation, setSelectedStation] = useState('');
-  const [stops, setStops] = useState('');
-  const [selectedStop, setSelectedStop] = useState('');
-  const [error, setError] = useState(null);
 
   //redux states
-  const trainLine = useSelector((state) => state.train.trainLine);
-  const trainStation = useSelector((state) => state.train.trainStation);
   const trainStop = useSelector((state) => state.train.trainStop);
   const stationList = useSelector((state) => state.train.stationList);
   const stopList = useSelector((state) => state.train.stopList);
-  const trainPredict = useSelector((state) => state.train.trainPrediction);
 
   const trainLines = async () => {
     try {

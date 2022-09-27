@@ -12,7 +12,29 @@ const {
   UPDATE_STOPLIST,
   UPDATE_TRAINPREDICT,
 } = require('../actions/train');
+const {
+  UPDATE_BUSROUTE,
+  UPDATE_BUSDIRECTION,
+  UPDATE_BUSSTOP,
+  UPDATE_DIRECTIONLIST,
+  UPDATE_BUSSTOPLIST,
+  UPDATE_BUSPREDICT,
+} = require('../actions/bus');
 
+const transit = (transit = {
+    mode: 'train',
+  },
+  action
+) => {
+  switch (action.type) {
+    case UPDATE_TRANSITTRAIN:
+      return { ...transit, mode: 'train' };
+    case UPDATE_TRANSITBUS:
+      return { ...transit, mode: 'bus'};
+    default:
+      return transit;
+  }
+};
 const train = (train = {
     trainLine: '',
     trainStation: '',
@@ -40,19 +62,32 @@ const train = (train = {
       return train;
   }
 };
-const transit = (transit = {
-  mode: 'train',
+const bus = (bus = {
+    busRoute: '',
+    busDirection: '',
+    busStop: '',
+    directionList: [],
+    busStopList: [],
+    busPrediction: '',
   },
   action
 ) => {
   switch (action.type) {
-    case UPDATE_TRANSITTRAIN:
-      return { ...transit, mode: 'train' };
-    case UPDATE_TRANSITBUS:
-      return { ...transit, mode: 'bus'};
+    case UPDATE_BUSROUTE:
+      return { ...bus, busRoute: action.busRoute };
+    case UPDATE_BUSDIRECTION:
+      return { ...bus, busDirection: action.busDirection };
+    case UPDATE_BUSSTOP:
+      return { ...bus, busStop: action.busStop };
+    case UPDATE_DIRECTIONLIST:
+      return { ...bus, directionList: action.directionList };
+    case UPDATE_BUSSTOPLIST:
+      return { ...bus, busStopList: action.busStopList };
+    case UPDATE_BUSPREDICT:
+      return { ...bus, busPrediction: action.busPredict };
     default:
-      return transit;
+      return bus;
   }
 };
 
-export default combineReducers({ transit, train });
+export default combineReducers({ transit, train, bus });

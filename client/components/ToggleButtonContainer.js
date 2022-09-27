@@ -8,6 +8,7 @@ import { updateTransitTrain, updateTransitBus } from '../actions/transit';
 
 const ToggleButtonContainer = () => {
   const dispatch = useDispatch();
+  const transitState = useSelector((state) => state.transit.mode);
 
   const selectTrain = function () {
     dispatch(updateTransitTrain());
@@ -17,30 +18,55 @@ const ToggleButtonContainer = () => {
   };
 
   return (
-    <View style={styles.toggleContainer}>
-      <ToggleButton
-        icon='train'
-        style={styles.toggleButton}
-        onPress={selectTrain}
-      />
-      <ToggleButton
-        icon='bus'
-        style={styles.toggleButton}
-        onPress={selectBus}
-      />
+    <View style={styles.metaContainer}>
+      {transitState === 'train' ? (
+        <View style={styles.toggleContainer}>
+          <ToggleButton
+            icon="train"
+            style={styles.selectedButton}
+            onPress={selectTrain}
+          />
+          <ToggleButton
+            icon="bus"
+            style={styles.toggleButton}
+            onPress={selectBus}
+          />
+        </View>
+      ) : (
+        <View style={styles.toggleContainer}>
+          <ToggleButton
+            icon="train"
+            style={styles.toggleButton}
+            onPress={selectTrain}
+          />
+          <ToggleButton
+            icon="bus"
+            style={styles.selectedButton}
+            onPress={selectBus}
+          />
+        </View>
+      )}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  metaContainer: {
+    alignItems: 'center',
+  },
   toggleContainer: {
-    height: .2,
+    flex: 0.2,
     marginTop: 20,
     flexDirection: 'row',
+    width: 100,
+  },
+  selectedButton: {
+    flex: 1,
+    backgroundColor: '#e5cedc',
   },
   toggleButton: {
     flex: 1,
-    color: '#e5cedc',
+    backgroundColor: '#4d456b',
   }
 });
 
