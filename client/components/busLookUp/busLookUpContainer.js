@@ -17,7 +17,6 @@ import { busService } from '../../services/busService';
 const BusLookUpContainer = () => {
   const [routes, setRoutes] = useState('');
   const [selectedRoute, setSelectedRoute] = useState('');
-  const [directions, setDirections] = useState('');
 
   //redux states
   const busStop = useSelector((state) => state.bus.busStop);
@@ -36,8 +35,7 @@ const BusLookUpContainer = () => {
 
   useEffect(() => {
     busRoutes();
-    console.log(directionList, 'directions');
-  }, [directionList, busStopList, busStop])
+  }, [directionList, busStopList, busStop]);
 
   return (
     <View style={styles.lookUpContainer}>

@@ -12,18 +12,22 @@ export function BusDirectionsAccordion({ directions }) {
   const busRoute = useSelector((state) => state.bus.busRoute);
   const busDirection = useSelector((state) => state.bus.busDirection);
 
-  const handlePress = async function (directionObj) {
+  console.log(directions, 'direction');
 
-  }
+  const handlePress = async function (directionObj) {
+    dispatch(updateBusDirection(directionObj));
+    const busStopList = await busService.getBusStops(directionObj);
+    dispatch(updateBusStopList(busStopList));
+  };
 
   return (
     <List.Accordion
-      title={busDirection.direction || 'Select Bus Direction'}
+      title={busDirection.direction || 'Select Route Direction'}
       style={styles.listParent}
       left={props => <List.Icon {...props} icon="bank-outline" color={busRoute.routeColor} style={styles.listIcon}/>}
-      accessibilityLabel="El Stations"
+      accessibilityLabel="Route Directions"
     >
-      <ScrollView height="45%">
+      <ScrollView height="28.5%">
         {directions
           ? directions.map((direction) => (
               <List.Item

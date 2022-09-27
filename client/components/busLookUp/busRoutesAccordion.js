@@ -12,13 +12,13 @@ export function BusRoutesAccordion({ routes }) {
   const busRoute = useSelector((state) => state.bus.busRoute);
 
   const handlePress = async function (route) {
-    console.log('bus routes handlePress yes');
     dispatch(updateBusRoute(route));
     dispatch(updateBusDirection({}));
     dispatch(updateBusStop({}));
     const busDirectionList = await busService.getBusDirections(route.routeID);
+    console.log(busDirectionList, typeof busDirectionList, 'dl');
     dispatch(updateDirectionList(busDirectionList));
-  }
+  };
 
   return (
     <List.Accordion

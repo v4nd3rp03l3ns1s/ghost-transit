@@ -12,26 +12,22 @@ export function BusPrediction({ stop }) {
 
   const busRoute = useSelector((state) => state.bus.busRoute);
   const busStop = useSelector((state) => state.bus.busStop);
-  const busPredict = useSelector((state) => state.bus.BusPrediction);
+  const busPredict = useSelector((state) => state.bus.busPrediction);
 
   const getPredictions = async function (stp) {
-    const prediction = await busService.getBusPredict(stp.stopID);
+    const prediction = await busService.getBusPredict(stp);
     const nextBus = prediction['0'];
-    console.log(nextBus);
     dispatch(updateBusPredict(nextBus));
-  }
+  };
 
   const countdownCalculate = function (scheduledTime) {
-    const scheduledDate = new Date(scheduledTime);
-    const countdown = Math.abs(scheduledDate - Date.now());
-    const countdownMin = Math.floor((countdown / 1000 / 60) << 0);
-    if (countdownMin === 0) {
+    if (scheduledTime === 0) {
       return 'Approaching';
     }
-    if (countdownMin === 1) {
+    if (scheduledTime === 1) {
       return '1 minute';
     }
-    return countdownMin + ' minutes';
+    return scheduledTime + ' minutes';
   };
 
   return (
@@ -49,11 +45,11 @@ export function BusPrediction({ stop }) {
       ) : null}
       {busPredict ? (
         <View style={styles.predictTextContainer}>
-          <Text style={styles.predictTopText} color={busRoute.routeColor}>bus #{busPredict.runID}</Text>
+          <Text style={styles.predictTopText} color={busRoute.routeColor}>Bus #{busPredict.vehicleID}</Text>
           <Text style={styles.predictBottomText}>{countdownCalculate(busPredict.countdown)}</Text>
         </View>
       ) : (
-        <Text>No train predicted.</Text>
+        <Text>No bus predicted.</Text>
       )}
     </View>
   )

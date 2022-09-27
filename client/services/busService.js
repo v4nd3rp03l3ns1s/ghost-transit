@@ -29,16 +29,20 @@ export const busService = {
     }
   },
   getBusStops: async function (dir) {
+    console.log(dir, 'dir');
     try {
-      //bus/getRouteStops?
-      //bus/getBusRoute?
+      const response = await fetch(`${baseURL}/bus/getRouteStops?rt=${dir.routeID}&dir=${dir._id}`)
+      const json = await response.json();
+      return json;
     } catch (err) {
       console.log('bus stop services error', err);
     }
   },
-  getBusPredict: async function (stopID) {
+  getBusPredict: async function (stop) {
     try {
-      //bus/getBusTimes
+      const response = await fetch(`${baseURL}/bus/getBusTimes?rt=${stop.routeID}&stp=${stop.stopID}`);
+      const json = await response.json();
+      return json;
     } catch (err) {
       console.log('bus time services error', err);
     }

@@ -17,7 +17,6 @@ import { trainService } from '../../services/trainService';
 const TrainLookUpContainer = () => {
   const [lines, setLines] = useState('');
   const [selectedLine, setSelectedLine] = useState('');
-  const [stations, setStations] = useState('');
 
   //redux states
   const trainStop = useSelector((state) => state.train.trainStop);

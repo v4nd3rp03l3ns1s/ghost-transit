@@ -80,9 +80,9 @@ const bus = (bus = {
     case UPDATE_BUSSTOP:
       return { ...bus, busStop: action.busStop };
     case UPDATE_DIRECTIONLIST:
-      return { ...bus, directionList: action.directionList };
+      return { ...bus, directionList: action.busDirections };
     case UPDATE_BUSSTOPLIST:
-      return { ...bus, busStopList: action.busStopList };
+      return { ...bus, busStopList: action.busStops };
     case UPDATE_BUSPREDICT:
       return { ...bus, busPrediction: action.busPredict };
     default:

@@ -17,7 +17,6 @@ export function TrainPrediction({ stop }) {
   const getPredictions = async function (stp) {
     const prediction = await trainService.getTrainPredict(stp.stopID);
     const nextTrain = prediction['0'];
-    console.log(nextTrain);
     dispatch(updateTrainPredict(nextTrain));
   };
 
