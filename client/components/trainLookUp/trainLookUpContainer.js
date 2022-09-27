@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
 //redux imports
@@ -57,29 +57,34 @@ const TrainLookUpContainer = () => {
 
   return (
     <View style={styles.lookUpContainer}>
-      <List.Section title="Train Lookup" style={styles.lookUpCaptions}>
-        <TrainLinesAccordion lines={lines} selectedLine={selectedLine} />
-        {stationList ? (
-          <TrainStationsAccordion stations={stationList} />
-        ) : (
-          <Text>dev: no Station selected</Text>
-        )}
-        {stopList ? (
-          <TrainStopsAccordion stops={stopList} />
-        ) : (
-          <Text>dev error: no stops</Text>
-        )}
-      </List.Section>
-      <TrainPrediction />
+      <ScrollView style={styles.lookUpScroll}>
+        <List.Section style={styles.lookUpCaptions}>
+          <TrainLinesAccordion lines={lines} selectedLine={selectedLine} />
+          {stationList ? (
+            <TrainStationsAccordion stations={stationList} />
+          ) : (
+            <Text>dev: no Station selected</Text>
+          )}
+          {stopList ? (
+            <TrainStopsAccordion stops={stopList} />
+          ) : (
+            <Text>dev error: no stops</Text>
+          )}
+        </List.Section>
+        <TrainPrediction />
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   lookUpContainer: {
-    flex: 0.8,
+    flex: 0.80,
     backgroundColor: '#7d6b91',
     marginHorizontal: 10,
+  },
+  lookUpScroll: {
+    height: '100%',
   },
   lookUpCaptions: {
     color: '#f3eaf4',

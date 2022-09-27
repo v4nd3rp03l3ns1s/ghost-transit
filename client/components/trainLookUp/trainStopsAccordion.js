@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
 //redux and state management imports
@@ -19,14 +19,19 @@ export function TrainStopsAccordion({ stops }) {
     <List.Accordion
       title={trainStop.stopName || 'El Stops'}
       left={props => <List.Icon {...props} icon="octagon" />}
-      accessibilityLabel="El Stops">
-      { stops ? stops.map((stop) => (
-        <List.Item
-          key={stop._id}
-          title={stop.stopName}
-          onPress={() => handlePress(stop)}
-        />
-      )) : null}
+      accessibilityLabel="El Stops"
+    >
+      <ScrollView height="45%">
+        {stops
+          ? stops.map((stop) => (
+              <List.Item
+                key={stop._id}
+                title={stop.stopName}
+                onPress={() => handlePress(stop)}
+              />
+            ))
+          : null}
+      </ScrollView>
     </List.Accordion>
   );
 }

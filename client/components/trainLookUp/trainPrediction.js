@@ -62,13 +62,15 @@ export function TrainPrediction({ stop }) {
 const styles = StyleSheet.create({
   predictContainer: {
     flexDirection: 'row',
-    justifyContents: 'center',
+    justifyContents: 'space-between',
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonStyle: {
     width: 60,
     height: 60,
     backgroundColor: '#272838',
+    marginLeft: 84,
   },
   predictTextContainer: {
     backgroundColor: '#f3eaf4',
