@@ -1,10 +1,10 @@
 
-**Station to Station**
+**---Station to Station---**
 
 A mobile app for tracking bus and train arrival times on Chicago's CTA public-transit system.
 
-**Getting Started**
+**---Getting Started---**
 
-**Tech Stack**
+**---Tech Stack---**
 
 React Native, Paper, Redux, Node, Koa, SQL, Postgres
