@@ -3,8 +3,8 @@
 
 A mobile app for tracking bus and train arrival times on Chicago's CTA public-transit system.
 
-![Selecting train stop from a given CTA station](/client/assets/TrainSelect.jpg?raw=true "Train Screen")
-![Accordion menu of CTA bus lines to choose from](/client/assets/BusSelect.jpg?raw=true "Bus Screen")
+![Selecting train stop from a given CTA station](client/assets/TrainSelect.jpg?raw=true "Train Screen")
+![Accordion menu of CTA bus lines to choose from](client/assets/BusSelect.jpg?raw=true "Bus Screen")
 
 **---Getting Started---**
 
