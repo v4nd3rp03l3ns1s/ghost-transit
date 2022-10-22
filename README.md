@@ -12,6 +12,7 @@ A mobile app for tracking bus and train arrival times on Chicago's CTA public-tr
 Running Station to Station requires a developer key for the CTA bus API (https://www.transitchicago.com/developers/bustracker/) as well as one for the CTA train API (https://www.transitchicago.com/developers/traintrackerapply/). These can be input into the server/controllers/config.js file.
 
 *Running the Server*
+
 Run server/index.js.
 
 *Populating the Database*
